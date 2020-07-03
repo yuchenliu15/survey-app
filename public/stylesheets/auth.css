@@ -1,0 +1,141 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-attachment: fixed;
+    background-image: linear-gradient(to right, #2e86de, #82ccdd);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Roboto;
+
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 50px 100px 500px 200px;
+    grid-template-areas:
+        "nav nav nav"
+        ". . ."
+        "body body body"
+        "footer footer footer";
+}
+
+nav {
+    grid-area: nav;
+    box-shadow: 0 0 3px #95a5a6;
+    margin: 0;
+    background-color: white;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+nav a:hover {
+    cursor: pointer;
+}
+
+nav a:visited {
+    color: black;
+}
+
+.login-container:before {
+    background: inherit;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    grid-area: body;
+    width: 500px;
+    height: 450px;
+    margin: auto;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .3);   
+    padding: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.login-container form input {
+    color: white;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 10px;
+    height: 40px;
+    padding: 20px;
+}
+
+.login-container form button {
+    background-color: transparent;
+    border: none;
+    color: #2e86de;
+    border: solid 1px #2e86de;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100px;
+    font-weight: 900;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.login-container form button:hover {
+    cursor: pointer;
+    background-color: #2e86de;
+    color: white
+}
+
+.login-container form h1 {
+    color: white;
+    font-size: 4em;
+    margin-bottom: 50px;
+}
+
+.login-container form input:focus {
+    transition: height 200ms ease;
+    height: 55px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .login-container {
+        width: 80%;
+        padding: 5px;
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-bottom: 70px;
+        border-radius: 10px;
+    }
+}

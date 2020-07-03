@@ -2,9 +2,9 @@
   "name": "survey-app",
   "version": "0.0.0",
   "scripts": {
-    "start:dev": "EXPORT NODE_ENV=development && node run watch",
-    "start:prod": "EXPORT NODE_ENV=production && node run watch",
-    "watch": "nodemon --watch ./bin/www"
+    "start:dev": "export NODE_ENV=development && npm run watch",
+    "start:prod": "export NODE_ENV=production && npm run watch",
+    "watch": "nodemon ./bin/www"
   },
   "author": "Yuchen Liu",
   "license": "ISC",
