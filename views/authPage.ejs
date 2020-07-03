@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Login</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="/stylesheets/auth.css">
-    </head>
 
-    <body>
-        <div class="container">
-            
-            <% include nav %> 
-    
-            <div class="login-container">
-                <form>
-                    <label><h1>Hello.</h1></label>
-                    <input 
-                        type="text"
-                        placeholder="username"
-                     />
-                    <input 
-                        type="text" 
-                        placeholder="password"
-                    />
-                    <button type="submit">Login</button>
-                </form>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= type %> </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <% include nav %>
+        <% if(type && type === 'login') { %>
+        <div class="login-container">
+            <form>
+                <label>
+                    <h1>Hello.</h1>
+                </label>
+                <input type="text" placeholder="username" />
+                <input type="text" placeholder="password" />
+                <button type="submit">Login</button>
+            </form>
         </div>
+        <% } %>
 
-    
-    </body>
+    </div>
+
+
+</body>
+
 </html>
