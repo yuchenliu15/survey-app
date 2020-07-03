@@ -1,6 +1,6 @@
 function getField(req, field) {
     let body = req.body;
-    field = parseField(field);
+    console.log(body)
     field.forEach(prop => {
         body = body[prop];
     });
@@ -12,6 +12,21 @@ function parseField(field) {
     return field.split(r).filter(s => s);
 }
 
+function minLength(field, length) {
+    field = parseField(field);
+    return (req, res, next) => {
+        if(getField(req, field).length > length) {
+            next();
+        }
+        else {
+            console.log('FAILLLLLLLLL')
+            res.redirect('back');
+        }
+
+    }
+}
+
 module.exports = {
     getField,
+    minLength
 };
