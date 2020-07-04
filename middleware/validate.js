@@ -19,7 +19,7 @@ function minLength(field, length) {
             next();
         }
         else {
-            console.log('FAILLLLLLLLL')
+            res.errorMessage(`${field[-1]} minimum of ${length} characters`);
             res.redirect('back');
         }
 

@@ -82,6 +82,11 @@ nav a:visited {
     color: white;
 }
 
+.login-container .error {
+    color: red;
+    font-weight: 900;
+}
+
 .login-container form {
     display: flex;
     flex-direction: column;
