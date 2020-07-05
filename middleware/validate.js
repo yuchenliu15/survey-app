@@ -19,14 +19,29 @@ function minLength(field, length) {
             next();
         }
         else {
-            res.errorMessage(`${field[-1]} minimum of ${length} characters`);
+            res.errorMessage(`${field[field.length - 1]} minimum of ${length} characters`);
             res.redirect('back');
         }
 
     }
 }
 
+function match(firstField, secondField) {
+    const first = parseField(firstField);
+    const second = parseField(secondField);
+    return (req, res, next) => {
+        if(first === second) {
+            next();
+        }
+        else {
+            res.errorMessage(`${first[first.length - 1]} not matched`);
+            res.redirect('back');
+        }
+    }
+}
+
 module.exports = {
     getField,
-    minLength
+    minLength,
+    match
 };

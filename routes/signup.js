@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {
-    minLength
+    minLength,
+    match
 } = require('../middleware/validate');
 
 /* GET home page. */
@@ -11,7 +12,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/',
     minLength('user[name]', 5),
-    minLength('user[pass', 6),
+    minLength('user[password]', 6),
+    match('user[password]', 'user[password2]'),
     submit
 );
 
