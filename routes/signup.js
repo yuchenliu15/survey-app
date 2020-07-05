@@ -22,16 +22,17 @@ router.post('/',
 );
 
 function submit(req, res, next) {
+    const data = req.body.user;
+
     Users.getTable()
         .then(() => {
-            const data = req.body.user;
-            console.log(data)
-            Users.save({
+            return Users.save({
                 name: data.name,
                 password: data.password
-            })
-                .then(res => console.log(res));
+            });
         })
+        .then((res)=>console.log(res))
+        .catch(e => console.error(e));
 }
 
 module.exports = router;

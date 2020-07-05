@@ -22,6 +22,14 @@ const pg = knex({
     connection: connection
 });
 
+const hashPassword = password => {
+    return bcrypt.genSalt(10)
+        .then(salt => {
+            return bcrypt.hash(password, salt);
+        })
+        .catch(e => console.log(e));
+}
+
 module.exports.Users = {
     getTable() {
         return pg.schema.hasTable('users')
@@ -37,11 +45,14 @@ module.exports.Users = {
         .catch(e => console.log(e));
     },
     save(data) {
-        return pg('users').insert({
-            name: data.name,
-            password: data.password,
-            items: []
-        });
+        return hashPassword(data.password)
+            .then(password => {
+                return pg('users').insert({
+                    name: data.name,
+                    password: password,
+                    items: []
+                });
+            });
     }
 
 }
