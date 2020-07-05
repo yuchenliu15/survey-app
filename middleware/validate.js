@@ -2,7 +2,6 @@ const { get } = require("../routes/login");
 
 function getField(req, field) {
     let body = req.body;
-    console.log(body)
     field.forEach(prop => {
         body = body[prop];
     });
@@ -31,8 +30,9 @@ function minLength(field, length) {
 function match(firstField, secondField) {
     const first = parseField(firstField);
     const second = parseField(secondField);
+
     return (req, res, next) => {
-        if(first === second) {
+        if(getField(req, first) === getField(req, second)) {
             next();
         }
         else {
