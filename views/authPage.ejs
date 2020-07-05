@@ -19,6 +19,7 @@
             <form action="/login" method="POST">
                 <label>
                     <h1>Hello.</h1>
+                    <% include messages %>
                 </label>
                 <input type="text" name="user[name]" placeholder="username" />
                 <input type="password" name="user[password]" placeholder="password" />
@@ -29,21 +30,21 @@
         <% } %>
 
         <% if(type && type === 'signup') { %>
-            <div class="login-container">
-                <form action="/signup" method="POST">
-                    <label>
-                        <h1>Welcome</h1>
-                        <% include messages %> 
-                    </label>
-                    <input type="text" name="user[name]" placeholder="username" />
-                    <input type="password" name="user[password]" placeholder="password" />
-                    <input type="password" name="user[password2]" placeholder="password" />
-                    <p>Aready have an account? <a href="/login">Log in</a></p>
-                    <button type="submit"><%= type %></button>
+        <div class="login-container">
+            <form action="/signup" method="POST">
+                <label>
+                    <h1>Welcome</h1>
+                    <% include messages %>
+                </label>
+                <input type="text" name="user[name]" placeholder="username" />
+                <input type="password" name="user[password]" placeholder="password" />
+                <input type="password" name="user[password2]" placeholder="password" />
+                <p>Aready have an account? <a href="/login">Log in</a></p>
+                <button type="submit"><%= type %></button>
 
-                </form>
-            </div>
-            <% } %>
+            </form>
+        </div>
+        <% } %>
 
     </div>
 

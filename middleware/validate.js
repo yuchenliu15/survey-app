@@ -1,3 +1,5 @@
+const { get } = require("../routes/login");
+
 function getField(req, field) {
     let body = req.body;
     console.log(body)
@@ -37,11 +39,26 @@ function match(firstField, secondField) {
             res.errorMessage(`${first[first.length - 1]} not matched`);
             res.redirect('back');
         }
-    }
+    };
+}
+
+function required(field) {
+    field = parseField(field);
+    return (req, res, next) => {
+        if(getField(req, field).length > 0) {
+            next();
+        }
+        else {
+            res.errorMessage(`${field[field.length - 1]} is required`);
+            res.redirect('back');
+        }
+
+    };
 }
 
 module.exports = {
     getField,
     minLength,
-    match
+    match,
+    required
 };
