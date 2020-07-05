@@ -14,7 +14,7 @@ function parseField(field) {
 function minLength(field, length) {
     field = parseField(field);
     return (req, res, next) => {
-        if(getField(req, field).length > length) {
+        if(getField(req, field).length >= length) {
             next();
         }
         else {

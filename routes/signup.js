@@ -23,15 +23,11 @@ router.post('/',
 
 function submit(req, res, next) {
     const data = req.body.user;
+    const users = new Users(data);
 
-    Users.getTable()
-        .then(() => {
-            return Users.save({
-                name: data.name,
-                password: data.password
-            });
-        })
-        .then((res)=>console.log(res))
+    users.getTable()
+        .then(() => users.save())
+        .then((res) => console.log(res))
         .catch(e => console.error(e));
 }
 

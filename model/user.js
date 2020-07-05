@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const knex = require('knex');
+const e = require('express');
 require('dotenv').config();
 
 const devConnection = {
@@ -22,53 +23,66 @@ const pg = knex({
     connection: connection
 });
 
-const hashPassword = password => {
-    return bcrypt.genSalt(10)
-        .then(salt => {
-            return bcrypt.hash(password, salt);
-        })
-        .catch(e => console.log(e));
-}
+class Users {
 
-const getPassword = user => {
-    return pg('users')
-            .select('password')
-            .where('name', user);
-}
+    constructor(data) {
+        this.name = data.name;
+        this.password = data.password;
+    }
 
-module.exports.Users = {
+    hashPassword() {
+        return bcrypt.genSalt()
+            .then(salt => {
+                this.salt = salt;
+                return bcrypt.hash(this.password, this.salt);
+            })
+            .then(password => this.password = password)
+            .catch(e => console.log(e));
+    }
+
+    getUser() {
+        return pg('users')
+            .select()
+            .where('name', this.name)
+            .then(password => password[0]);
+    }
+
     getTable() {
         return pg.schema.hasTable('users')
-        .then(exists => {
-            if(!exists) {
-                return pg.schema.createTable('users', table => {
-                    table.text('name').primary();
-                    table.text('password');
-                    table.specificType('items', 'integer[]');
-                });
-            }
-        })
-        .catch(e => console.log(e));
-    },
-    save(data) {
-        return hashPassword(data.password)
-            .then(password => {
+            .then(exists => {
+                if (!exists) {
+                    return pg.schema.createTable('users', table => {
+                        table.text('name').primary();
+                        table.text('password');
+                        table.text('salt');
+                        table.specificType('items', 'integer[]');
+                    });
+                }
+            })
+            .catch(e => console.log(e));
+    }
+
+    save() {
+        return this.hashPassword()
+            .then(() => {
                 return pg('users').insert({
-                    name: data.name,
-                    password: password,
+                    name: this.name,
+                    password: this.password,
+                    salt: this.salt,
                     items: []
                 });
             });
-    },
-    authenticate(data) {
-        return hashPassword(data.password)
-        .then(password => {
-            return 
-        })
     }
 
+    async authenticate() {
+        const user = await this.getUser();
+        const truePassword = user['password'];
+        const salt = user['salt'];
+        const enteredPassword = await bcrypt.hash(this.password, salt);
+
+        return enteredPassword === truePassword;
+    }
 }
 
-module.exports.tests = {
-    getPassword
-};
+
+module.exports.Users = Users;

@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     required
 } = require('../middleware/validate');
+const Users = require('../model/user').Users;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -15,9 +16,17 @@ router.post('/',
     submit
 );
 
-function submit(req, res, next) {
-    console.log(req.body)
-    res.render('authPage', { type: 'login' });
+async function submit(req, res, next) {
+    const data = req.body.user;
+    const users = new Users(data);
+    const auth = await users.authenticate();
+    if (!!auth) {
+        res.redirect('/');
+    }
+    else {
+        res.errorMessage('wrong username or password');
+        res.redirect('back');
+    }
 }
 
 module.exports = router;
