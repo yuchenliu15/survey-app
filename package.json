@@ -4,7 +4,8 @@
   "scripts": {
     "start:dev": "export NODE_ENV=development && npm run watch",
     "start:prod": "export NODE_ENV=production && npm run watch",
-    "watch": "nodemon ./bin/www"
+    "watch": "nodemon ./bin/www",
+    "test": "export NODE_ENV=development && mocha"
   },
   "author": "Yuchen Liu",
   "license": "ISC",

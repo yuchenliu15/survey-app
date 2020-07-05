@@ -30,13 +30,19 @@ const hashPassword = password => {
         .catch(e => console.log(e));
 }
 
+const getPassword = user => {
+    return pg('users')
+            .select('password')
+            .where('name', user);
+}
+
 module.exports.Users = {
     getTable() {
         return pg.schema.hasTable('users')
         .then(exists => {
             if(!exists) {
                 return pg.schema.createTable('users', table => {
-                    table.text('name');
+                    table.text('name').primary();
                     table.text('password');
                     table.specificType('items', 'integer[]');
                 });
@@ -53,6 +59,16 @@ module.exports.Users = {
                     items: []
                 });
             });
+    },
+    authenticate(data) {
+        return hashPassword(data.password)
+        .then(password => {
+            return 
+        })
     }
 
 }
+
+module.exports.tests = {
+    getPassword
+};

@@ -1,5 +1,3 @@
-const { get } = require("../routes/login");
-
 function getField(req, field) {
     let body = req.body;
     field.forEach(prop => {
