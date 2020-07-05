@@ -5,6 +5,7 @@ const {
     match,
     required
 } = require('../middleware/validate');
+const Users = require('../model/user').Users;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -21,8 +22,16 @@ router.post('/',
 );
 
 function submit(req, res, next) {
-    console.log(req.body)
-    res.render('authPage', { type: 'signup' });
+    Users.getTable()
+        .then(() => {
+            const data = req.body.user;
+            console.log(data)
+            Users.save({
+                name: data.name,
+                password: data.password
+            })
+                .then(res => console.log(res));
+        })
 }
 
 module.exports = router;

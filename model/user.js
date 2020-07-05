@@ -21,9 +21,27 @@ const pg = knex({
     client: 'pg',
     connection: connection
 });
-console.log(connection)
-console.log(process.env.NODE_ENV)
-pg.schema.hasTable('users')
-    .then(exists => {
-        console.log(exists)
-    });
+
+module.exports.Users = {
+    getTable() {
+        return pg.schema.hasTable('users')
+        .then(exists => {
+            if(!exists) {
+                return pg.schema.createTable('users', table => {
+                    table.text('name');
+                    table.text('password');
+                    table.specificType('items', 'integer[]');
+                });
+            }
+        })
+        .catch(e => console.log(e));
+    },
+    save(data) {
+        return pg('users').insert({
+            name: data.name,
+            password: data.password,
+            items: []
+        });
+    }
+
+}
