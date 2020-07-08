@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const message = require('./middleware/storeMessage');
+const loadUser = require('./middleware/user');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -26,6 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(loadUser);
 app.use(message);
 app.use(express.static(path.join(__dirname, 'public')));
 

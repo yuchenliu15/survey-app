@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     required
 } = require('../middleware/validate');
-const Users = require('../model/user').Users;
+const Users = require('../model/user');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -21,6 +21,7 @@ async function submit(req, res, next) {
     const users = new Users(data);
     const auth = await users.authenticate();
     if (!!auth) {
+        req.session.name = users.name;
         res.redirect('/');
     }
     else {

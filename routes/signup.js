@@ -7,7 +7,7 @@ const {
     
 } = require('../middleware/validate');
 const e = require('express');
-const Users = require('../model/user').Users;
+const Users = require('../model/user');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

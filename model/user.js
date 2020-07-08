@@ -40,11 +40,11 @@ class Users {
             .catch(e => console.log(e));
     }
 
-    getUser() {
+    static getUser(name) {
         return pg('users')
             .select()
-            .where('name', this.name)
-            .then(password => password[0]);
+            .where('name', name)
+            .then(items => items[0]);
     }
 
     getTable() {
@@ -75,7 +75,7 @@ class Users {
     }
 
     async authenticate() {
-        const user = await this.getUser();
+        const user = await Users.getUser(this.name);
         const truePassword = user['password'];
         const salt = user['salt'];
         const enteredPassword = await bcrypt.hash(this.password, salt);
@@ -85,4 +85,4 @@ class Users {
 }
 
 
-module.exports.Users = Users;
+module.exports = Users;
