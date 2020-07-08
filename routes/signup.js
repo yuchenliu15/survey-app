@@ -3,8 +3,10 @@ const router = express.Router();
 const {
     minLength,
     match,
-    required
+    required,
+    
 } = require('../middleware/validate');
+const e = require('express');
 const Users = require('../model/user').Users;
 
 /* GET home page. */
@@ -26,8 +28,17 @@ function submit(req, res, next) {
     const users = new Users(data);
 
     users.getTable()
-        .then(() => users.save())
-        .then((res) => console.log(res))
+        .then(() => users.getUser())
+        .then(async userExistsAlready => {
+            if(userExistsAlready) {
+                res.errorMessage(`${users.name} exists already`);
+                res.redirect('back');
+            }
+            else {
+                await users.save();
+                res.redirect('/login');
+            }
+        })
         .catch(e => console.error(e));
 }
 
