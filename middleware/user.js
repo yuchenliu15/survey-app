@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
 
     Users.getUser(name)
         .then(user => {
-            req.locals.user = user;
+            res.locals.user = user;
             next();
         });
 };

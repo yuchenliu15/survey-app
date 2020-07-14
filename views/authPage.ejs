@@ -13,7 +13,7 @@
 <body>
     <div class="container">
 
-        <% include nav %>
+        <%- include('nav', {title: '', link: ''}) %>
         <% if(type && type === 'login') { %>
         <div class="login-container">
             <form action="/login" method="POST">

@@ -24,29 +24,6 @@ body {
         "footer footer footer";
 }
 
-nav {
-    grid-area: nav;
-    box-shadow: 0 0 3px #95a5a6;
-    margin: 0;
-    background-color: white;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav a {
-    color: black;
-    text-decoration: none;
-}
-
-nav a:hover {
-    cursor: pointer;
-}
-
-nav a:visited {
-    color: black;
-}
 
 .login-container:before {
     background: inherit;

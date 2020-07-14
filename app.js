@@ -7,7 +7,7 @@ const session = require('express-session');
 const message = require('./middleware/storeMessage');
 const loadUser = require('./middleware/user');
 
-const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const homeRouter = require('./routes/home');
@@ -32,7 +32,7 @@ app.use(message);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 
