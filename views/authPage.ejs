@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 
         <%- include('nav', {title: '', link: ''}) %>
         <% if(type && type === 'login') { %>
-        <div class="login-container">
+        <div class="body-container">
             <form action="/login" method="POST">
                 <label>
                     <h1>Hello.</h1>
@@ -30,7 +30,7 @@
         <% } %>
 
         <% if(type && type === 'signup') { %>
-        <div class="login-container">
+        <div class="body-container">
             <form action="/signup" method="POST">
                 <label>
                     <h1>Welcome</h1>

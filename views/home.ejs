@@ -7,14 +7,23 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+
 </head>
 
 <body>
     <div class="container">
 
         <%- include('nav', {title:'login', link:'/login'}) %>
-        <p>login to create a survey</p>
+        <div class="body-container">
+            <div class="home-container">
+                <p>Welcome to my survey app, wanna create a survey?</p>
+                <button><a href="/">Create!</a></button>
+
+            </div>
+
+        </div>
 
     </div>
 
