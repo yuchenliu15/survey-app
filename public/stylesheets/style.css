@@ -19,7 +19,7 @@ body {
     grid-template-rows: 50px 100px 500px 200px;
     grid-template-areas:
         "nav nav nav"
-        ". . ."
+        ". title ."
         "body body body"
         "footer footer footer";
 }
@@ -112,6 +112,33 @@ body {
     height: 55px;
 }
 
+.create-button {
+    background-color: #20bf6b;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 900;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.create-button a {
+    text-decoration: none;
+
+}
+
+.create-button a:visited {
+    color: white;
+
+}
+
+.create-button:hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 600px) {
     .body-container {

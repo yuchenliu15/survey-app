@@ -1,0 +1,5 @@
+.title-container {
+    grid-area: title;
+    color: white;
+    font-size: 60px;
+}

@@ -8,13 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/dashboard.css">
+
 </head>
 
 <body>
     <div class="container">
 
         <%- include('nav', {title: 'log out', link: '/logout'}) %>
-        <p><%= user.name %> </p>
+        <div class="title-container">
+            <p>Hello, <%= user.name %> </p>
+        </div>
+        <div class="body-container">
+            <span>Want a new one?</span>
+            <button class="create-button"><a href="/">Create!</a></button>
+            <p>Existing surveys: </p>
+             
+        </div>
 
     </div>
 
