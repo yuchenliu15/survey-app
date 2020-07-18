@@ -44,7 +44,7 @@ class Users {
         return pg('users')
             .select()
             .where('name', name)
-            .then(items => items[0]);
+            .then(res => res[0]);
     }
 
     getTable() {

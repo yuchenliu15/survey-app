@@ -23,7 +23,13 @@
             <span>Want a new one?</span>
             <button class="create-button"><a href="/">Create!</a></button>
             <p>Existing surveys: </p>
-             
+            <% if (user.items.length) { %>
+                <% user.items.forEach(item => { %> 
+                    <p><%- item %> </p>
+                <% }); %> 
+            <% } else { %>
+                <p>None</p>
+            <% } %>    
         </div>
 
     </div>
