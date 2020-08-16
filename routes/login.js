@@ -18,7 +18,6 @@ router.post('/',
 
 async function submit(req, res, next) {
     const data = req.body.user;
-    console.log(data)
     const users = new Users(data);
     const auth = await users.authenticate();
     if (!!auth) {

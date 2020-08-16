@@ -28,7 +28,7 @@ function submit(req, res, next) {
     const users = new Users(data);
 
     users.getTable()
-        .then(() => users.getUser())
+        .then(() => Users.getUser(data.name))
         .then(async userExistsAlready => {
             if(userExistsAlready) {
                 res.errorMessage(`${users.name} exists already`);
