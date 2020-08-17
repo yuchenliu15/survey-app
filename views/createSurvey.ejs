@@ -17,23 +17,27 @@
 
         <%- include('nav', {title: 'log out', link: '/logout'}) %>
         <div class="title-container">
-            <p>Hello, <%= user.name %> </p>
+            <p>Design your survey</p>
         </div>
         <div class="body-container">
-            <span>Want a new one?</span>
-            <button class="create-button"><a href="/create">Create!</a></button>
-            <p>Existing surveys: </p>
-            <% if (user.items.length) { %>
-                <% user.items.forEach(item => { %> 
-                    <p><%- item %> </p>
-                <% }); %> 
-            <% } else { %>
-                <p>None</p>
-            <% } %>    
+            <form>
+                <div id="fields">
+                    <input type="text" />
+                </div>
+                <button type="button" onclick="addField()">+</button>
+                <button type="submit" value="preview your survey!">preview your survey</button>
+            </form>
         </div>
 
     </div>
 
+    <script>
+        function addField() {
+            console.log('dsfsd  ')
+            var field = document.createElement('input')
+            document.getElementById('fields').appendChild(field)
+        }
+    </script>
 
 </body>
 
